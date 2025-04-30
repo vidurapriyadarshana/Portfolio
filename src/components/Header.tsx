@@ -24,7 +24,7 @@ const Header = () => {
     return (
         <div className="fixed top-0 z-50 flex items-center w-full justify-between border-b-[1px] bg-white">
             <div className='w-[90px] h-[90px] bg-black'>
-                <img src="/logo.png" className='p-7' />
+                <img src="/icons8-v-400.png" className='p-7' />
             </div>
             <div className='hidden md:flex gap-12'>
                 {menu.map((item) => (
