@@ -1,4 +1,4 @@
-import React from 'react'
+
 import Header from './components/Header'
 import SideBar from './components/SideBar'
 import Profile from './components/Profile'

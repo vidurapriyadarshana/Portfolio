@@ -1,4 +1,4 @@
-import React from 'react'
+
 import Strings from '../shared/Strings'
 import { IoArrowForwardOutline } from "react-icons/io5";
 
