@@ -1,54 +1,90 @@
-# React + TypeScript + Vite
+# Personal Portfolio - Vidura Priyadarshana
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A modern, responsive portfolio website built with React, TypeScript, and Tailwind CSS.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- Responsive design with mobile-first approach
+- Smooth navigation with anchor links
+- Professional sections: About, Skills, Experience, Projects, Education, Contact
+- Interactive project cards with live demos and GitHub links
+- Contact form integration
+- Modern UI with gradient accents
 
-## Expanding the ESLint configuration
+## Setup
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+1. Install dependencies:
+```bash
+npm install
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
-
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
+2. Run development server:
+```bash
+npm run dev
 ```
+
+3. Build for production:
+```bash
+npm run build
+```
+
+4. Preview production build:
+```bash
+npm run preview
+```
+
+## Adding Images
+
+Replace the following placeholder images in the `public/` directory:
+
+1. **Profile Image**: `/avatar.JPG` - Your professional headshot (160x160px recommended)
+2. **User Image**: `/user-image.JPG` - Sidebar profile image (full height)
+3. **Frontend Icon**: `/fontend.png` - Frontend development icon (80x80px)
+4. **Backend Icon**: `/backend.png` - Backend development icon (80x80px)
+5. **Logo**: `/icons8-v-400.png` - Your personal logo (for header)
+
+### Project Images
+Add project screenshots to the `public/projects/` directory:
+- `/projects/vibzi.jpg`
+- `/projects/akapilot.jpg`
+- `/projects/subscription-tracker.jpg`
+- `/projects/complaint-management.jpg`
+- `/projects/disney-clone.jpg`
+- `/projects/data-dish.jpg`
+
+**Recommended size**: 800x600px or 16:9 aspect ratio
+
+## Customization
+
+All portfolio data is centralized in `src/data/portfolioData.ts`. Edit this file to update:
+- Personal information
+- Professional summary
+- Skills
+- Experience
+- Projects
+- Education
+- Certifications
+- Languages
+
+## Tech Stack
+
+- React 19
+- TypeScript
+- Tailwind CSS
+- Vite
+- React Icons
+
+## Project Structure
+
+```
+src/
+├── components/       # React components
+├── data/            # Portfolio data
+├── shared/          # Shared constants and strings
+├── types/           # TypeScript type definitions
+└── App.tsx          # Main application component
+```
+
+## License
+
+MIT

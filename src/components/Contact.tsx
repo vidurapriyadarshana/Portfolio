@@ -1,0 +1,147 @@
+import { FaEnvelope, FaPhone, FaMapMarkerAlt, FaLinkedin, FaGithub, FaPaperPlane } from 'react-icons/fa'
+import { portfolioData } from '../data/portfolioData'
+
+const Contact = () => {
+  const contactItems = [
+    {
+      icon: FaEnvelope,
+      label: 'Email',
+      value: portfolioData.personalInfo.email,
+      href: `mailto:${portfolioData.personalInfo.email}`
+    },
+    {
+      icon: FaPhone,
+      label: 'Phone',
+      value: portfolioData.personalInfo.phone,
+      href: `tel:${portfolioData.personalInfo.phone}`
+    },
+    {
+      icon: FaMapMarkerAlt,
+      label: 'Location',
+      value: portfolioData.personalInfo.location,
+      href: null
+    }
+  ]
+
+  return (
+    <div id='contact' className='py-16 px-6 md:px-16 bg-gray-50'>
+      <div className='max-w-6xl mx-auto'>
+        <div className='text-center mb-10'>
+          <span className='text-gray-500 font-medium text-xs tracking-[0.3em] uppercase'>Let's Connect</span>
+          <h2 className='text-3xl md:text-4xl font-bold text-gray-900 mt-2'>Get In Touch</h2>
+        </div>
+        
+        <div className='grid grid-cols-1 lg:grid-cols-5 gap-8'>
+          <div className='lg:col-span-2 space-y-6'>
+            <div className='bg-white rounded-xl p-6 border border-gray-200 shadow-sm'>
+              <h3 className='text-xl font-bold text-gray-900 mb-6'>Contact Information</h3>
+              
+              <div className='space-y-4'>
+                {contactItems.map((item, index) => {
+                  const IconComponent = item.icon
+                  const content = (
+                    <div className='flex items-center gap-4 p-4 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors'>
+                      <div className='w-10 h-10 bg-gray-900 rounded-lg flex items-center justify-center flex-shrink-0'>
+                        <IconComponent className='text-white' size={16} />
+                      </div>
+                      <div className='flex-1 min-w-0'>
+                        <p className='text-xs text-gray-500 uppercase tracking-wide mb-1'>{item.label}</p>
+                        <p className='text-gray-900 font-medium text-sm break-words'>{item.value}</p>
+                      </div>
+                    </div>
+                  )
+                  
+                  return item.href ? (
+                    <a key={index} href={item.href} className='block'>
+                      {content}
+                    </a>
+                  ) : (
+                    <div key={index}>
+                      {content}
+                    </div>
+                  )
+                })}
+              </div>
+
+              <div className='mt-6 pt-6 border-t border-gray-200'>
+                <h4 className='text-xs font-semibold text-gray-900 mb-3 uppercase tracking-wide'>Follow Me</h4>
+                <div className='flex gap-3'>
+                  <a 
+                    href={portfolioData.personalInfo.linkedin}
+                    target='_blank'
+                    rel='noopener noreferrer'
+                    className='w-10 h-10 bg-gray-900 text-white rounded-lg flex items-center justify-center hover:bg-gray-800 transition-all'
+                  >
+                    <FaLinkedin size={18} />
+                  </a>
+                  <a 
+                    href={portfolioData.personalInfo.github}
+                    target='_blank'
+                    rel='noopener noreferrer'
+                    className='w-10 h-10 bg-gray-900 text-white rounded-lg flex items-center justify-center hover:bg-gray-800 transition-all'
+                  >
+                    <FaGithub size={18} />
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div className='lg:col-span-3'>
+            <div className='bg-white rounded-xl p-6 border border-gray-200 shadow-sm'>
+              <h3 className='text-xl font-bold text-gray-900 mb-6'>Send Me a Message</h3>
+              <form className='space-y-4'>
+                <div className='grid grid-cols-1 md:grid-cols-2 gap-4'>
+                  <div>
+                    <label className='block text-xs font-semibold text-gray-700 mb-2'>Full Name</label>
+                    <input 
+                      type='text' 
+                      className='w-full px-4 py-2.5 border border-gray-200 rounded-lg focus:outline-none focus:border-gray-400 transition-colors text-sm'
+                      placeholder='John Doe'
+                    />
+                  </div>
+                  <div>
+                    <label className='block text-xs font-semibold text-gray-700 mb-2'>Email Address</label>
+                    <input 
+                      type='email' 
+                      className='w-full px-4 py-2.5 border border-gray-200 rounded-lg focus:outline-none focus:border-gray-400 transition-colors text-sm'
+                      placeholder='john@example.com'
+                    />
+                  </div>
+                </div>
+                
+                <div>
+                  <label className='block text-xs font-semibold text-gray-700 mb-2'>Subject</label>
+                  <input 
+                    type='text' 
+                    className='w-full px-4 py-2.5 border border-gray-200 rounded-lg focus:outline-none focus:border-gray-400 transition-colors text-sm'
+                    placeholder='Project Discussion'
+                  />
+                </div>
+                
+                <div>
+                  <label className='block text-xs font-semibold text-gray-700 mb-2'>Message</label>
+                  <textarea 
+                    rows={5}
+                    className='w-full px-4 py-2.5 border border-gray-200 rounded-lg focus:outline-none focus:border-gray-400 transition-colors resize-none text-sm'
+                    placeholder='Tell me about your project...'
+                  />
+                </div>
+                
+                <button 
+                  type='submit'
+                  className='w-full bg-gray-900 text-white py-3 rounded-lg hover:bg-gray-800 transition-all font-medium text-sm flex items-center justify-center gap-2 shadow-sm'
+                >
+                  <FaPaperPlane size={14} />
+                  Send Message
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  )
+}
+
+export default Contact

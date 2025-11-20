@@ -1,19 +1,56 @@
+import { useState, useEffect } from 'react'
+import { FaGithub, FaLinkedin } from 'react-icons/fa'
+import { portfolioData } from '../data/portfolioData'
 
-import { IoLogoGithub,IoLogoYoutube,IoLogoLinkedin,
-    IoLogoDribbble } from "react-icons/io5";
-function SideBar() {
+const SideBar = () => {
+  const [activeSection, setActiveSection] = useState('HOME')
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const sections = ['home', 'about', 'skills', 'experience', 'projects', 'contact']
+      const scrollPosition = window.scrollY + 200
+
+      for (let i = sections.length - 1; i >= 0; i--) {
+        const section = document.getElementById(sections[i])
+        if (section && section.offsetTop <= scrollPosition) {
+          setActiveSection(sections[i].toUpperCase())
+          break
+        }
+      }
+    }
+
+    window.addEventListener('scroll', handleScroll)
+    handleScroll()
+
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [])
+
   return (
-    <div
-    className="w-[90px] border-r-[1px]
-    h-screen fixed flex flex-col justify-around items-center mt-[90px]"
-    >
-        <h2 className='-rotate-90 tracking-widest text-[20px]'>HOMEPAGE</h2>
-        <div className='flex flex-col gap-7 mb-10 text-[30px]'>
-            <IoLogoGithub className="cursor-pointer hover:scale-110 transition-all ease-in-out"/>
-            <IoLogoYoutube className="cursor-pointer hover:scale-110 transition-all ease-in-out"/>
-            <IoLogoLinkedin className="cursor-pointer hover:scale-110 transition-all ease-in-out"/>
-            <IoLogoDribbble className="cursor-pointer hover:scale-110 transition-all ease-in-out"/>
-        </div>
+    <div className='fixed left-0 top-20 h-[calc(100vh-5rem)] w-20 border-r border-gray-200 bg-white flex flex-col items-center py-8 z-40'>
+      <div className='flex flex-col gap-6'>
+        <a 
+          href={portfolioData.personalInfo.github}
+          target='_blank'
+          rel='noopener noreferrer'
+          className='text-gray-600 hover:text-gray-900 transition-colors'
+          title='GitHub'
+        >
+          <FaGithub size={24} />
+        </a>
+        <a 
+          href={portfolioData.personalInfo.linkedin}
+          target='_blank'
+          rel='noopener noreferrer'
+          className='text-gray-600 hover:text-gray-900 transition-colors'
+          title='LinkedIn'
+        >
+          <FaLinkedin size={24} />
+        </a>
+      </div>
+      
+      <div className='writing-mode-vertical text-sm font-semibold text-gray-400 tracking-wider mt-auto mb-16'>
+        <span className='inline-block -rotate-90 whitespace-nowrap'>{activeSection}</span>
+      </div>
     </div>
   )
 }
