@@ -1,20 +1,51 @@
+import { 
+  SiPython, SiSpring, SiNodedotjs,
+  SiJavascript, SiNextdotjs, SiTailwindcss, SiRedux,
+  SiMongodb, SiDocker, SiNginx,
+  SiGithub
+} from 'react-icons/si'
+import { FaCode, FaLock, FaCog, FaUsers, FaJava, FaDatabase } from 'react-icons/fa'
+
 const Skills = () => {
   const skillCategories = [
     {
       title: 'Backend Development',
-      skills: ['Java', 'Python', 'Spring Boot | Spring Framework (MVC, Data JPA, Security)', 'Node.js | Express.js', 'RESTful APIs', 'JWT & OAuth']
+      skills: [
+        { name: 'Java', icon: FaJava },
+        { name: 'Python', icon: SiPython },
+        { name: 'Spring Boot | Spring Framework (MVC, Data JPA, Security)', icon: SiSpring },
+        { name: 'Node.js | Express.js', icon: SiNodedotjs },
+        { name: 'RESTful APIs', icon: FaCode },
+        { name: 'JWT & OAuth', icon: FaLock }
+      ]
     },
     {
       title: 'Frontend Development',
-      skills: ['JavaScript | TypeScript', 'Next.js | React.js', 'Tailwind CSS', 'Redux.js']
+      skills: [
+        { name: 'JavaScript | TypeScript', icon: SiJavascript },
+        { name: 'Next.js | React.js', icon: SiNextdotjs },
+        { name: 'Tailwind CSS', icon: SiTailwindcss },
+        { name: 'Redux.js', icon: SiRedux }
+      ]
     },
     {
       title: 'Database & DevOps',
-      skills: ['MongoDB|MySQL', 'Mongoose', 'Docker', 'Nginx', 'CI/CD (GitHub Actions)']
+      skills: [
+        { name: 'MongoDB|MySQL', icon: SiMongodb },
+        { name: 'Mongoose', icon: FaDatabase },
+        { name: 'Docker', icon: SiDocker },
+        { name: 'Nginx', icon: SiNginx },
+        { name: 'CI/CD (GitHub Actions)', icon: FaCog }
+      ]
     },
     {
       title: 'Tools & Practices',
-      skills: ['GitHub | Git | GitLab', 'Maven | Gradle | npm | pip', 'Clean Code & OOP Principles', 'Agile & Startup Environment']
+      skills: [
+        { name: 'GitHub | Git | GitLab', icon: SiGithub },
+        { name: 'Maven | Gradle | npm | pip', icon: FaCog },
+        { name: 'Clean Code & OOP Principles', icon: FaCode },
+        { name: 'Agile & Startup Environment', icon: FaUsers }
+      ]
     }
   ]
 
@@ -34,14 +65,18 @@ const Skills = () => {
             >
               <h3 className='text-lg font-bold text-gray-900 mb-4'>{category.title}</h3>
               <div className='flex flex-wrap gap-2'>
-                {category.skills.map((skill, idx) => (
-                  <span 
-                    key={idx}
-                    className='px-3 py-1.5 bg-gray-50 text-gray-600 rounded-lg text-xs border border-gray-200 hover:border-gray-400 transition-all duration-200'
-                  >
-                    {skill}
-                  </span>
-                ))}
+                {category.skills.map((skill, idx) => {
+                  const Icon = skill.icon
+                  return (
+                    <span 
+                      key={idx}
+                      className='px-3 py-1.5 bg-gray-50 text-gray-600 rounded-lg text-xs border border-gray-200 hover:border-gray-400 transition-all duration-200 flex items-center gap-2'
+                    >
+                      <Icon className='text-sm flex-shrink-0' />
+                      <span>{skill.name}</span>
+                    </span>
+                  )
+                })}
               </div>
             </div>
           ))}

@@ -62,42 +62,42 @@ export const portfolioData = {
       github: 'https://github.com/vidurapriyadarshana/Vibzi.git',
       description: 'Modern travel web app that simplifies trip planning with visual itinerary builder, destination discovery, scheduling, mapping, and authenticated trip management.',
       technologies: ['Next.js', 'TypeScript', 'React.js', 'ShadCN UI', 'Tailwind CSS', 'Redux.js', 'Amazon Cognito'],
-      image: '/projects/vibzi.jpg'
+      image: 'public/Vibzi.png'
     },
     {
       name: 'AKAPilot – All-in-One Learning & Productivity Platform',
       github: 'https://github.com/vidurapriyadarshana/AKAPilot.git',
       description: 'Full-stack educational platform with flashcards, Pomodoro timer, task management, analytics dashboard, and study session tracking.',
       technologies: ['Spring Boot', 'React.js', 'Spring Security', 'TypeScript', 'Spring Data JPA'],
-      image: '/projects/akapilot.jpg'
+      image: 'public/overview.png'
     },
     {
       name: 'Subscription Tracker Backend',
       github: 'https://github.com/vidurapriyadarshana/subscription-tracker-backend.git',
       description: 'Secure REST API for managing user subscriptions with JWT authentication and bcrypt password hashing.',
       technologies: ['Node.js', 'Express.js', 'MongoDB', 'Mongoose', 'JWT'],
-      image: '/projects/subscription-tracker.jpg'
+      image: 'public/subscription.png'
     },
     {
       name: 'Complaint Management System',
       github: 'https://github.com/vidurapriyadarshana/complaint-management-system.git',
       description: 'Web-based platform for submitting, tracking, and resolving organizational complaints with role-based access.',
       technologies: ['Jakarta EE', 'JSP', 'Servlet', 'MySQL', 'Tomcat'],
-      image: '/projects/complaint-management.jpg'
+      image: 'public/complaint.png'
     },
     {
       name: 'Disney+ UI Clone',
       github: 'https://github.com/vidurapriyadarshana/disney-ui.git',
       description: 'Pixel-perfect, responsive frontend clone of Disney+ streaming platform with smooth animations and layout.',
       technologies: ['React.js', 'Tailwind CSS', 'Axios'],
-      image: '/projects/disney-clone.jpg'
+      image: 'public/banner.png'
     },
     {
       name: 'Data Dish – Restaurant Management System',
       github: 'https://github.com/vidurapriyadarshana/Data-Dish.git',
       description: 'Comprehensive restaurant system with order management, billing (Jasper Reports + email), table reservation, employee management, and analytics.',
       technologies: ['JavaFX', 'Java', 'MySQL', 'JDBC', 'Jasper Reports', 'Figma'],
-      image: '/projects/data-dish.jpg'
+      image: 'public/datadish.png'
     }
   ],
 

@@ -18,20 +18,44 @@ A modern, responsive portfolio website built with React, TypeScript, and Tailwin
 npm install
 ```
 
-2. Run development server:
+2. Configure environment variables:
+```bash
+# Copy the example file
+cp .env.example .env
+
+# Edit .env and add your Web3Forms API key
+# Get a free API key from https://web3forms.com
+VITE_WEB3FORMS_ACCESS_KEY=your_api_key_here
+```
+
+3. Run development server:
 ```bash
 npm run dev
 ```
 
-3. Build for production:
+4. Build for production:
 ```bash
 npm run build
 ```
 
-4. Preview production build:
+5. Preview production build:
 ```bash
 npm run preview
 ```
+
+## Contact Form Setup
+
+The contact form uses Web3Forms (a free service) to send emails. To set it up:
+
+1. Visit [https://web3forms.com](https://web3forms.com)
+2. Get your free Access Key
+3. Add it to your `.env` file:
+   ```
+   VITE_WEB3FORMS_ACCESS_KEY=your_access_key_here
+   ```
+4. **Never commit the `.env` file to Git** - it's already in `.gitignore`
+
+**Note**: If no API key is configured, the form will fall back to opening the default email client (mailto link).
 
 ## Adding Images
 

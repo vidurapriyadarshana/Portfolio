@@ -1,7 +1,17 @@
-import { FaEnvelope, FaPhone, FaMapMarkerAlt, FaLinkedin, FaGithub, FaPaperPlane } from 'react-icons/fa'
+import { useState, FormEvent } from 'react'
+import { FaEnvelope, FaPhone, FaMapMarkerAlt, FaLinkedin, FaGithub, FaPaperPlane, FaCheckCircle, FaExclamationCircle } from 'react-icons/fa'
 import { portfolioData } from '../data/portfolioData'
 
 const Contact = () => {
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    subject: '',
+    message: ''
+  })
+  const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle')
+  const [errorMessage, setErrorMessage] = useState('')
+
   const contactItems = [
     {
       icon: FaEnvelope,
@@ -22,6 +32,90 @@ const Contact = () => {
       href: null
     }
   ]
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value
+    })
+  }
+
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
+    setStatus('loading')
+    setErrorMessage('')
+
+    // Validate form
+    if (!formData.name || !formData.email || !formData.subject || !formData.message) {
+      setStatus('error')
+      setErrorMessage('Please fill in all fields')
+      return
+    }
+
+    // Email validation
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+    if (!emailRegex.test(formData.email)) {
+      setStatus('error')
+      setErrorMessage('Please enter a valid email address')
+      return
+    }
+
+    try {
+      // Get API key from environment variables (Vite uses VITE_ prefix)
+      const apiKey = import.meta.env.VITE_WEB3FORMS_ACCESS_KEY
+
+      if (!apiKey) {
+        // No API key configured, use mailto fallback
+        throw new Error('No API key configured')
+      }
+
+      // Using Web3Forms API (free service)
+      const response = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        body: JSON.stringify({
+          access_key: apiKey,
+          name: formData.name,
+          email: formData.email,
+          subject: formData.subject,
+          message: formData.message,
+          from_name: 'Portfolio Contact Form',
+          to_email: portfolioData.personalInfo.email
+        })
+      })
+
+      const result = await response.json()
+
+      if (result.success) {
+        setStatus('success')
+        setFormData({
+          name: '',
+          email: '',
+          subject: '',
+          message: ''
+        })
+        setTimeout(() => setStatus('idle'), 5000)
+      } else {
+        throw new Error('Form submission failed')
+      }
+    } catch (error) {
+      // Fallback: Open default email client with pre-filled data
+      const mailtoLink = `mailto:${portfolioData.personalInfo.email}?subject=${encodeURIComponent(formData.subject)}&body=${encodeURIComponent(`Name: ${formData.name}\nEmail: ${formData.email}\n\nMessage:\n${formData.message}`)}`
+      window.location.href = mailtoLink
+      
+      setStatus('success')
+      setFormData({
+        name: '',
+        email: '',
+        subject: '',
+        message: ''
+      })
+      setTimeout(() => setStatus('idle'), 3000)
+    }
+  }
 
   return (
     <div id='contact' className='py-16 px-6 md:px-16 bg-gray-50'>
@@ -90,22 +184,47 @@ const Contact = () => {
           <div className='lg:col-span-3'>
             <div className='bg-white rounded-xl p-6 border border-gray-200 shadow-sm'>
               <h3 className='text-xl font-bold text-gray-900 mb-6'>Send Me a Message</h3>
-              <form className='space-y-4'>
+              
+              {status === 'success' && (
+                <div className='mb-4 p-4 bg-green-50 border border-green-200 rounded-lg flex items-center gap-3'>
+                  <FaCheckCircle className='text-green-600' size={20} />
+                  <p className='text-green-800 text-sm font-medium'>Message sent successfully! I'll get back to you soon.</p>
+                </div>
+              )}
+
+              {status === 'error' && (
+                <div className='mb-4 p-4 bg-red-50 border border-red-200 rounded-lg flex items-center gap-3'>
+                  <FaExclamationCircle className='text-red-600' size={20} />
+                  <p className='text-red-800 text-sm font-medium'>{errorMessage}</p>
+                </div>
+              )}
+
+              <form onSubmit={handleSubmit} className='space-y-4'>
                 <div className='grid grid-cols-1 md:grid-cols-2 gap-4'>
                   <div>
                     <label className='block text-xs font-semibold text-gray-700 mb-2'>Full Name</label>
                     <input 
-                      type='text' 
-                      className='w-full px-4 py-2.5 border border-gray-200 rounded-lg focus:outline-none focus:border-gray-400 transition-colors text-sm'
+                      type='text'
+                      name='name'
+                      value={formData.name}
+                      onChange={handleChange}
+                      disabled={status === 'loading'}
+                      className='w-full px-4 py-2.5 border border-gray-200 rounded-lg focus:outline-none focus:border-gray-400 transition-colors text-sm disabled:bg-gray-50 disabled:cursor-not-allowed'
                       placeholder='John Doe'
+                      required
                     />
                   </div>
                   <div>
                     <label className='block text-xs font-semibold text-gray-700 mb-2'>Email Address</label>
                     <input 
-                      type='email' 
-                      className='w-full px-4 py-2.5 border border-gray-200 rounded-lg focus:outline-none focus:border-gray-400 transition-colors text-sm'
+                      type='email'
+                      name='email'
+                      value={formData.email}
+                      onChange={handleChange}
+                      disabled={status === 'loading'}
+                      className='w-full px-4 py-2.5 border border-gray-200 rounded-lg focus:outline-none focus:border-gray-400 transition-colors text-sm disabled:bg-gray-50 disabled:cursor-not-allowed'
                       placeholder='john@example.com'
+                      required
                     />
                   </div>
                 </div>
@@ -113,9 +232,14 @@ const Contact = () => {
                 <div>
                   <label className='block text-xs font-semibold text-gray-700 mb-2'>Subject</label>
                   <input 
-                    type='text' 
-                    className='w-full px-4 py-2.5 border border-gray-200 rounded-lg focus:outline-none focus:border-gray-400 transition-colors text-sm'
+                    type='text'
+                    name='subject'
+                    value={formData.subject}
+                    onChange={handleChange}
+                    disabled={status === 'loading'}
+                    className='w-full px-4 py-2.5 border border-gray-200 rounded-lg focus:outline-none focus:border-gray-400 transition-colors text-sm disabled:bg-gray-50 disabled:cursor-not-allowed'
                     placeholder='Project Discussion'
+                    required
                   />
                 </div>
                 
@@ -123,17 +247,23 @@ const Contact = () => {
                   <label className='block text-xs font-semibold text-gray-700 mb-2'>Message</label>
                   <textarea 
                     rows={5}
-                    className='w-full px-4 py-2.5 border border-gray-200 rounded-lg focus:outline-none focus:border-gray-400 transition-colors resize-none text-sm'
+                    name='message'
+                    value={formData.message}
+                    onChange={handleChange}
+                    disabled={status === 'loading'}
+                    className='w-full px-4 py-2.5 border border-gray-200 rounded-lg focus:outline-none focus:border-gray-400 transition-colors resize-none text-sm disabled:bg-gray-50 disabled:cursor-not-allowed'
                     placeholder='Tell me about your project...'
+                    required
                   />
                 </div>
                 
                 <button 
                   type='submit'
-                  className='w-full bg-gray-900 text-white py-3 rounded-lg hover:bg-gray-800 transition-all font-medium text-sm flex items-center justify-center gap-2 shadow-sm'
+                  disabled={status === 'loading'}
+                  className='w-full bg-gray-900 text-white py-3 rounded-lg hover:bg-gray-800 transition-all font-medium text-sm flex items-center justify-center gap-2 shadow-sm disabled:bg-gray-400 disabled:cursor-not-allowed'
                 >
                   <FaPaperPlane size={14} />
-                  Send Message
+                  {status === 'loading' ? 'Sending...' : 'Send Message'}
                 </button>
               </form>
             </div>

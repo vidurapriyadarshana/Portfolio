@@ -1,4 +1,4 @@
-import { FaGraduationCap, FaCertificate, FaLanguage } from 'react-icons/fa'
+import { FaGraduationCap, FaCertificate } from 'react-icons/fa'
 import { portfolioData } from '../data/portfolioData'
 
 const Education = () => {
@@ -48,27 +48,6 @@ const Education = () => {
                 </div>
               ))}
             </div>
-          </div>
-        </div>
-
-        <div className='mt-6 bg-white rounded-xl p-6 border border-gray-200 shadow-sm'>
-          <div className='flex items-center gap-3 mb-6'>
-            <div className='w-10 h-10 bg-gray-900 rounded-lg flex items-center justify-center'>
-              <FaLanguage className='text-white text-lg' />
-            </div>
-            <h3 className='text-xl font-bold text-gray-900'>Languages</h3>
-          </div>
-          
-          <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4'>
-            {portfolioData.languages.map((lang, index) => (
-              <div 
-                key={index} 
-                className='bg-gray-50 border border-gray-200 rounded-lg p-4 text-center'
-              >
-                <h4 className='font-bold text-base text-gray-900'>{lang.language}</h4>
-                <p className='text-gray-600 text-xs mt-1'>{lang.level}</p>
-              </div>
-            ))}
           </div>
         </div>
       </div>
