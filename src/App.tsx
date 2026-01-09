@@ -9,15 +9,17 @@ import Experience from './components/Experience'
 import Projects from './components/Projects'
 import Education from './components/Education'
 import Contact from './components/Contact'
+import BackgroundAnimation from './components/BackgroundAnimation'
 
 const App = () => {
   return (
     <>
+      <BackgroundAnimation />
       <Header />
       <SideBar />
       <ProgressBar />
-      
-      <div className='ml-20 mt-20'>
+
+      <div className='ml-0 md:ml-20 pt-20 min-h-screen text-theme-white overflow-x-hidden'>
         <Introduction />
         <About />
         <Services />
