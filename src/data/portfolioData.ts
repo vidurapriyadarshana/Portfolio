@@ -9,7 +9,7 @@ export const portfolioData = {
     github: 'https://github.com/vidurapriyadarshana'
   },
 
-  professionalSummary: 'Founding Full-Stack Engineer with production experience building Vibzi — a travel planning platform — using Java Spring Boot backend and Next.js frontend. Hands-on expertise in Docker, MongoDB, JWT authentication, REST APIs, and CI/CD pipelines in a fast-paced startup environment.',
+  professionalSummary: 'Results-driven Full-Stack Developer with 1+ year of hands-on experience building scalable web applications in startup and freelance environments. Strong background in backend development using Java, Spring Boot, and RESTful APIs, combined with modern frontend frameworks such as React.js and Next.js. Proven ability to deliver clean, maintainable code following OOP and clean architecture principles. Experienced in CI/CD automation, cloud ready deployments, and agile development practices.',
 
   topSkills: [
     'Java',

@@ -105,7 +105,7 @@ const Contact = () => {
       // Fallback: Open default email client with pre-filled data
       const mailtoLink = `mailto:${portfolioData.personalInfo.email}?subject=${encodeURIComponent(formData.subject)}&body=${encodeURIComponent(`Name: ${formData.name}\nEmail: ${formData.email}\n\nMessage:\n${formData.message}`)}`
       window.location.href = mailtoLink
-      
+
       setStatus('success')
       setFormData({
         name: '',
@@ -118,33 +118,33 @@ const Contact = () => {
   }
 
   return (
-    <div id='contact' className='py-16 px-6 md:px-16 bg-gray-50'>
+    <div id='contact' className='py-16 px-6 md:px-16 bg-transparent'>
       <div className='max-w-6xl mx-auto'>
         <div className='text-center mb-10'>
-          <span className='text-gray-500 font-medium text-xs tracking-[0.3em] uppercase'>Let's Connect</span>
-          <h2 className='text-3xl md:text-4xl font-bold text-gray-900 mt-2'>Get In Touch</h2>
+          <span className='text-theme-light-gray font-professional text-xs tracking-[0.3em] uppercase'>Let's Connect</span>
+          <h2 className='text-3xl md:text-5xl font-bold text-theme-white mt-2 font-professional'>Get In Touch</h2>
         </div>
-        
+
         <div className='grid grid-cols-1 lg:grid-cols-5 gap-8'>
           <div className='lg:col-span-2 space-y-6'>
-            <div className='bg-white rounded-xl p-6 border border-gray-200 shadow-sm'>
-              <h3 className='text-xl font-bold text-gray-900 mb-6'>Contact Information</h3>
-              
+            <div className='bg-theme-dark-gray/50 rounded-xl p-6 border border-theme-gray shadow-md backdrop-blur-sm'>
+              <h3 className='text-xl font-bold text-theme-white mb-6 font-professional'>Contact Information</h3>
+
               <div className='space-y-4'>
                 {contactItems.map((item, index) => {
                   const IconComponent = item.icon
                   const content = (
-                    <div className='flex items-center gap-4 p-4 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors'>
-                      <div className='w-10 h-10 bg-gray-900 rounded-lg flex items-center justify-center flex-shrink-0'>
-                        <IconComponent className='text-white' size={16} />
+                    <div className='flex items-center gap-4 p-4 bg-theme-black rounded-sm hover:bg-theme-gray transition-colors border border-theme-gray'>
+                      <div className='w-10 h-10 bg-theme-white rounded-sm flex items-center justify-center flex-shrink-0'>
+                        <IconComponent className='text-theme-black' size={16} />
                       </div>
                       <div className='flex-1 min-w-0'>
-                        <p className='text-xs text-gray-500 uppercase tracking-wide mb-1'>{item.label}</p>
-                        <p className='text-gray-900 font-medium text-sm break-words'>{item.value}</p>
+                        <p className='text-xs text-theme-light-gray uppercase tracking-wide mb-1 font-professional'>{item.label}</p>
+                        <p className='text-theme-white font-medium text-sm break-words font-professional'>{item.value}</p>
                       </div>
                     </div>
                   )
-                  
+
                   return item.href ? (
                     <a key={index} href={item.href} className='block'>
                       {content}
@@ -157,22 +157,22 @@ const Contact = () => {
                 })}
               </div>
 
-              <div className='mt-6 pt-6 border-t border-gray-200'>
-                <h4 className='text-xs font-semibold text-gray-900 mb-3 uppercase tracking-wide'>Follow Me</h4>
+              <div className='mt-6 pt-6 border-t border-theme-gray'>
+                <h4 className='text-xs font-semibold text-theme-white mb-3 uppercase tracking-wide font-professional'>Follow Me</h4>
                 <div className='flex gap-3'>
-                  <a 
+                  <a
                     href={portfolioData.personalInfo.linkedin}
                     target='_blank'
                     rel='noopener noreferrer'
-                    className='w-10 h-10 bg-gray-900 text-white rounded-lg flex items-center justify-center hover:bg-gray-800 transition-all'
+                    className='w-10 h-10 bg-theme-white text-theme-black rounded-sm flex items-center justify-center hover:bg-theme-light-gray transition-all border border-theme-gray'
                   >
                     <FaLinkedin size={18} />
                   </a>
-                  <a 
+                  <a
                     href={portfolioData.personalInfo.github}
                     target='_blank'
                     rel='noopener noreferrer'
-                    className='w-10 h-10 bg-gray-900 text-white rounded-lg flex items-center justify-center hover:bg-gray-800 transition-all'
+                    className='w-10 h-10 bg-theme-white text-theme-black rounded-sm flex items-center justify-center hover:bg-theme-light-gray transition-all border border-theme-gray'
                   >
                     <FaGithub size={18} />
                   </a>
@@ -182,88 +182,90 @@ const Contact = () => {
           </div>
 
           <div className='lg:col-span-3'>
-            <div className='bg-white rounded-xl p-6 border border-gray-200 shadow-sm'>
-              <h3 className='text-xl font-bold text-gray-900 mb-6'>Send Me a Message</h3>
-              
+            <div className='bg-theme-dark-gray/50 rounded-xl p-6 border border-theme-gray shadow-md backdrop-blur-sm'>
+              <h3 className='text-xl font-bold text-theme-white mb-6 font-professional'>Send Me a Message</h3>
+
               {status === 'success' && (
-                <div className='mb-4 p-4 bg-green-50 border border-green-200 rounded-lg flex items-center gap-3'>
-                  <FaCheckCircle className='text-green-600' size={20} />
-                  <p className='text-green-800 text-sm font-medium'>Message sent successfully! I'll get back to you soon.</p>
+                <div className='mb-4 p-4 bg-green-900/20 border border-green-500/50 rounded-sm flex items-center gap-3'>
+                  <FaCheckCircle className='text-green-500' size={20} />
+                  <p className='text-green-200 text-sm font-medium font-professional'>Message sent successfully! I'll get back to you soon.</p>
                 </div>
               )}
 
               {status === 'error' && (
-                <div className='mb-4 p-4 bg-red-50 border border-red-200 rounded-lg flex items-center gap-3'>
-                  <FaExclamationCircle className='text-red-600' size={20} />
-                  <p className='text-red-800 text-sm font-medium'>{errorMessage}</p>
+                <div className='mb-4 p-4 bg-red-900/20 border border-red-500/50 rounded-sm flex items-center gap-3'>
+                  <FaExclamationCircle className='text-red-500' size={20} />
+                  <p className='text-red-200 text-sm font-medium font-professional'>{errorMessage}</p>
                 </div>
               )}
 
               <form onSubmit={handleSubmit} className='space-y-4'>
                 <div className='grid grid-cols-1 md:grid-cols-2 gap-4'>
                   <div>
-                    <label className='block text-xs font-semibold text-gray-700 mb-2'>Full Name</label>
-                    <input 
+                    <label className='block text-xs font-semibold text-theme-light-gray mb-2 font-professional'>Full Name</label>
+                    <input
                       type='text'
                       name='name'
                       value={formData.name}
                       onChange={handleChange}
                       disabled={status === 'loading'}
-                      className='w-full px-4 py-2.5 border border-gray-200 rounded-lg focus:outline-none focus:border-gray-400 transition-colors text-sm disabled:bg-gray-50 disabled:cursor-not-allowed'
+                      className='w-full px-4 py-2.5 bg-theme-black border border-theme-gray rounded-sm focus:outline-none focus:border-theme-white transition-colors text-sm text-theme-white disabled:opacity-50 disabled:cursor-not-allowed placeholder-theme-gray/50 font-professional'
                       placeholder='John Doe'
                       required
                     />
                   </div>
                   <div>
-                    <label className='block text-xs font-semibold text-gray-700 mb-2'>Email Address</label>
-                    <input 
+                    <label className='block text-xs font-semibold text-theme-light-gray mb-2 font-professional'>Email Address</label>
+                    <input
                       type='email'
                       name='email'
                       value={formData.email}
                       onChange={handleChange}
                       disabled={status === 'loading'}
-                      className='w-full px-4 py-2.5 border border-gray-200 rounded-lg focus:outline-none focus:border-gray-400 transition-colors text-sm disabled:bg-gray-50 disabled:cursor-not-allowed'
+                      className='w-full px-4 py-2.5 bg-theme-black border border-theme-gray rounded-sm focus:outline-none focus:border-theme-white transition-colors text-sm text-theme-white disabled:opacity-50 disabled:cursor-not-allowed placeholder-theme-gray/50 font-professional'
                       placeholder='john@example.com'
                       required
                     />
                   </div>
                 </div>
-                
+
                 <div>
-                  <label className='block text-xs font-semibold text-gray-700 mb-2'>Subject</label>
-                  <input 
+                  <label className='block text-xs font-semibold text-theme-light-gray mb-2 font-professional'>Subject</label>
+                  <input
                     type='text'
                     name='subject'
                     value={formData.subject}
                     onChange={handleChange}
                     disabled={status === 'loading'}
-                    className='w-full px-4 py-2.5 border border-gray-200 rounded-lg focus:outline-none focus:border-gray-400 transition-colors text-sm disabled:bg-gray-50 disabled:cursor-not-allowed'
+                    className='w-full px-4 py-2.5 bg-theme-black border border-theme-gray rounded-sm focus:outline-none focus:border-theme-white transition-colors text-sm text-theme-white disabled:opacity-50 disabled:cursor-not-allowed placeholder-theme-gray/50 font-professional'
                     placeholder='Project Discussion'
                     required
                   />
                 </div>
-                
+
                 <div>
-                  <label className='block text-xs font-semibold text-gray-700 mb-2'>Message</label>
-                  <textarea 
+                  <label className='block text-xs font-semibold text-theme-light-gray mb-2 font-professional'>Message</label>
+                  <textarea
                     rows={5}
                     name='message'
                     value={formData.message}
                     onChange={handleChange}
                     disabled={status === 'loading'}
-                    className='w-full px-4 py-2.5 border border-gray-200 rounded-lg focus:outline-none focus:border-gray-400 transition-colors resize-none text-sm disabled:bg-gray-50 disabled:cursor-not-allowed'
+                    className='w-full px-4 py-2.5 bg-theme-black border border-theme-gray rounded-sm focus:outline-none focus:border-theme-white transition-colors resize-none text-sm text-theme-white disabled:opacity-50 disabled:cursor-not-allowed placeholder-theme-gray/50 font-professional'
                     placeholder='Tell me about your project...'
                     required
                   />
                 </div>
-                
-                <button 
+
+                <button
                   type='submit'
                   disabled={status === 'loading'}
-                  className='w-full bg-gray-900 text-white py-3 rounded-lg hover:bg-gray-800 transition-all font-medium text-sm flex items-center justify-center gap-2 shadow-sm disabled:bg-gray-400 disabled:cursor-not-allowed'
+                  className='w-full bg-theme-white text-theme-black py-3 rounded-sm hover:bg-theme-light-gray transition-all font-bold text-sm flex items-center justify-center gap-2 shadow-sm disabled:bg-theme-gray disabled:cursor-not-allowed font-professional'
                 >
-                  <FaPaperPlane size={14} />
-                  {status === 'loading' ? 'Sending...' : 'Send Message'}
+                  <span className='flex items-center gap-2'>
+                    <FaPaperPlane size={14} />
+                    {status === 'loading' ? 'Sending...' : 'Send Message'}
+                  </span>
                 </button>
               </form>
             </div>

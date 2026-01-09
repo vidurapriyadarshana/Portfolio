@@ -26,29 +26,29 @@ const SideBar = () => {
   }, [])
 
   return (
-    <div className='fixed left-0 top-20 h-[calc(100vh-5rem)] w-20 border-r border-gray-200 bg-white flex flex-col items-center py-8 z-40'>
+    <div className='fixed left-0 top-20 h-[calc(100vh-5rem)] w-20 border-r border-theme-gray bg-theme-dark-gray hidden md:flex flex-col items-center py-8 z-40'>
       <div className='flex flex-col gap-6'>
-        <a 
+        <a
           href={portfolioData.personalInfo.github}
           target='_blank'
           rel='noopener noreferrer'
-          className='text-gray-600 hover:text-gray-900 transition-colors'
+          className='text-theme-light-gray hover:text-theme-white transition-colors'
           title='GitHub'
         >
           <FaGithub size={24} />
         </a>
-        <a 
+        <a
           href={portfolioData.personalInfo.linkedin}
           target='_blank'
           rel='noopener noreferrer'
-          className='text-gray-600 hover:text-gray-900 transition-colors'
+          className='text-theme-light-gray hover:text-theme-white transition-colors'
           title='LinkedIn'
         >
           <FaLinkedin size={24} />
         </a>
       </div>
-      
-      <div className='writing-mode-vertical text-sm font-semibold text-gray-400 tracking-wider mt-auto mb-16'>
+
+      <div className='writing-mode-vertical text-sm font-semibold text-theme-light-gray tracking-wider mt-auto mb-16 font-professional'>
         <span className='inline-block -rotate-90 whitespace-nowrap'>{activeSection}</span>
       </div>
     </div>

@@ -1,4 +1,4 @@
-import { 
+import {
   SiPython, SiSpring, SiNodedotjs,
   SiJavascript, SiNextdotjs, SiTailwindcss, SiRedux,
   SiMongodb, SiDocker, SiNginx,
@@ -53,24 +53,24 @@ const Skills = () => {
     <div id='skills' className='py-16 px-6 md:px-16'>
       <div className='max-w-6xl mx-auto'>
         <div className='text-center mb-10'>
-          <span className='text-gray-500 font-medium text-xs tracking-[0.3em] uppercase'>What I Know</span>
-          <h2 className='text-3xl md:text-4xl font-bold text-gray-900 mt-2'>Technical Skills</h2>
+          <span className='text-theme-light-gray font-professional text-xs tracking-[0.3em] uppercase'>What I Know</span>
+          <h2 className='text-3xl md:text-5xl font-bold text-theme-white mt-2 font-professional'>Technical Skills</h2>
         </div>
 
         <div className='grid grid-cols-1 md:grid-cols-2 gap-6'>
           {skillCategories.map((category, index) => (
-            <div 
+            <div
               key={index}
-              className='bg-white rounded-xl p-6 border border-gray-200 hover:shadow-md transition-shadow duration-300'
+              className='bg-theme-dark-gray/50 rounded-xl p-6 border border-theme-gray hover:border-theme-white/50 transition-colors duration-300 backdrop-blur-sm group'
             >
-              <h3 className='text-lg font-bold text-gray-900 mb-4'>{category.title}</h3>
+              <h3 className='text-lg font-bold text-theme-white mb-4 font-professional group-hover:text-theme-light-gray transition-colors'>{category.title}</h3>
               <div className='flex flex-wrap gap-2'>
                 {category.skills.map((skill, idx) => {
                   const Icon = skill.icon
                   return (
-                    <span 
+                    <span
                       key={idx}
-                      className='px-3 py-1.5 bg-gray-50 text-gray-600 rounded-lg text-xs border border-gray-200 hover:border-gray-400 transition-all duration-200 flex items-center gap-2'
+                      className='px-3 py-1.5 bg-theme-black text-theme-light-gray rounded-sm text-xs border border-theme-gray hover:border-theme-white hover:text-theme-white transition-all duration-200 flex items-center gap-2 font-professional'
                     >
                       <Icon className='text-sm flex-shrink-0' />
                       <span>{skill.name}</span>
