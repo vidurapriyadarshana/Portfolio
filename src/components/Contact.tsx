@@ -61,15 +61,7 @@ const Contact = () => {
     }
 
     try {
-      // Get API key from environment variables (Vite uses VITE_ prefix)
-      const apiKey = import.meta.env.VITE_WEB3FORMS_ACCESS_KEY
-
-      if (!apiKey) {
-        // No API key configured, use mailto fallback
-        throw new Error('No API key configured')
-      }
-
-      // Using Web3Forms API (free service)
+      // Using Web3Forms API with provided key
       const response = await fetch('https://api.web3forms.com/submit', {
         method: 'POST',
         headers: {
@@ -77,7 +69,7 @@ const Contact = () => {
           'Accept': 'application/json'
         },
         body: JSON.stringify({
-          access_key: apiKey,
+          access_key: 'e56df3d0-d992-48e8-9c3e-f9f572ad5e3c',
           name: formData.name,
           email: formData.email,
           subject: formData.subject,
@@ -99,21 +91,12 @@ const Contact = () => {
         })
         setTimeout(() => setStatus('idle'), 5000)
       } else {
-        throw new Error('Form submission failed')
+        throw new Error(result.message || 'Form submission failed')
       }
     } catch (error) {
-      // Fallback: Open default email client with pre-filled data
-      const mailtoLink = `mailto:${portfolioData.personalInfo.email}?subject=${encodeURIComponent(formData.subject)}&body=${encodeURIComponent(`Name: ${formData.name}\nEmail: ${formData.email}\n\nMessage:\n${formData.message}`)}`
-      window.location.href = mailtoLink
-
-      setStatus('success')
-      setFormData({
-        name: '',
-        email: '',
-        subject: '',
-        message: ''
-      })
-      setTimeout(() => setStatus('idle'), 3000)
+      console.error('Submission error:', error)
+      setStatus('error')
+      setErrorMessage('Failed to send message. Please try again later or email me directly.')
     }
   }
 
